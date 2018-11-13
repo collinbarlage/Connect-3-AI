@@ -35,7 +35,7 @@ public class Board implements java.io.Serializable {
             if (init.charAt(i) != '|') input.add("" + init.charAt(i));
         }
         // check if error
-        if(input.size() != 15) {
+        if(input.size() != 12) {
             io.log("Oh geez, something went wrong. Check your argument string"); return;
         }
         // load input onto board
@@ -98,7 +98,7 @@ public class Board implements java.io.Serializable {
         if(isWinner(1,0,1,1))   { return tile(1,0); }
         if(isWinner(2,0,-1,-1)) { return tile(2,0); }
         if(isWinner(3,0,-1,-1)) { return tile(3,0); }
-        
+
         return null;
     }
 
