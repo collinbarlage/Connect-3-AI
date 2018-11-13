@@ -98,6 +98,8 @@ public class Board implements java.io.Serializable {
         if(isWinner(1,0,1,1))   { return tile(1,0); }
         if(isWinner(2,0,-1,-1)) { return tile(2,0); }
         if(isWinner(3,0,-1,-1)) { return tile(3,0); }
+        
+        return null;
     }
 
     private boolean isWinner(int x, int y, int dx, int dy) {
