@@ -100,7 +100,7 @@ public class Board implements java.io.Serializable {
         if(isWinner(3,0,-1,-1)) { return tile(3,0); }
     }
 
-    private String isWinner(int x, int y, int dx, int dy) {
+    private boolean isWinner(int x, int y, int dx, int dy) {
         String winner = tile(x,y);
         for(int i=0; i<2; i++) {
             x += dx;
