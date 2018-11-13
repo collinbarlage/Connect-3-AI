@@ -33,7 +33,7 @@ public class Main {
                 break;
 
             case "winner": // return True or False if xx car can gtfo
-                io.log(newBoard.winner())
+                io.log(newBoard.winner());
                 break;
 
             // case "next": // display all boards of each attempt to move each car +-direction

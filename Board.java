@@ -7,7 +7,6 @@ public class Board implements java.io.Serializable {
 
     private String boardArray[][] = new String[4][3];
 
-    public Vector<Car> cars = new Vector<Car>();
     public Vector<Board> childBoards = new Vector<Board>();
     public Board parent;
 
@@ -28,13 +27,6 @@ public class Board implements java.io.Serializable {
             }
         }
         this.boardArray = newBoardArray;
-
-        Vector<Car> newCars = new Vector<Car>();
-        for (int i=0; i<og.cars.size(); i++) {
-            Car newCar = new Car(og.cars.get(i));
-            newCars.add(newCar);
-        }
-        this.cars = newCars;
     }
 
     public void load(String init) {
