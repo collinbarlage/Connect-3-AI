@@ -125,6 +125,10 @@ public class Board implements java.io.Serializable {
         boardArray[x][j] = chip;
     }
 
+    public void endTurn() {
+        xTurn = !xTurn;
+    }
+
     private int nextFreeSpace(int x) {
         for(int j=2; j>=0; j--) {
             if(tile(x,j).equals(" ")) {
@@ -161,6 +165,7 @@ public class Board implements java.io.Serializable {
             Path next = b.next();
             b = next.get(randomInt(next.size()));
             path.add(new Board(b));
+            b.endTurn();
         }
         path.print();
     }
