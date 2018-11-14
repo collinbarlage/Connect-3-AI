@@ -40,7 +40,7 @@ public class Board implements java.io.Serializable {
         }
         // load input onto board
         for (int i=0; i<4; i++) {
-            for (int j=2; j>=0; j--) { 
+            for (int j=2; j>=0; j--) { io.log("its lit ("+i+", "+j);
                 boardArray[i][j] = input.get(j*4 + i);
             }
         }
@@ -99,7 +99,7 @@ public class Board implements java.io.Serializable {
         if(isWinner(2,0,-1,-1)) { return tile(2,0); }
         if(isWinner(3,0,-1,-1)) { return tile(3,0); }
 
-        return null;
+        return "None";
     }
 
     private boolean isWinner(int x, int y, int dx, int dy) {
