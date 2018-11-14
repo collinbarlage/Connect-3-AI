@@ -10,7 +10,7 @@ public class Board implements java.io.Serializable {
     public Vector<Board> childBoards = new Vector<Board>();
     public Board parent;
 
-    public boolean tie = false; 
+    public boolean xTurn = true;
 
     public Board() {
         // default does nothing
@@ -18,7 +18,7 @@ public class Board implements java.io.Serializable {
 
     public Board(Board og) { // copy constuctor
         this.parent = og.parent;
-        this.tie = og.tie;
+        this.xTurn = og.xTurn;
 
         String newBoardArray [][] = new String[6][6];
         for (int j=0; j<6; j++) {
@@ -70,19 +70,8 @@ public class Board implements java.io.Serializable {
         }
     }
 
-    public boolean isVacant(int x, int y) {
-        if (isInBounds(x, y) && tile(x,y).equals(" ")) { return true ; }
-        return false;
-    } 
-
-    public boolean isInBounds(int x, int y) {
-        if (x < 0 || y < 0 || x > 3 || y > 2) { return false; }
-        return true;
-    }
-
-
     public String winner() {
-        if(tie) { return "TIE"; }
+        if(isTie()) { return "TIE"; }
 
         //test horz
         for(int j=0; j<3; j++) {
@@ -116,17 +105,34 @@ public class Board implements java.io.Serializable {
         return true;
     }
 
-    // public boolean canBeDone() {
-    //     String line = getLine(3);
-    //     char[] lineChars = line.toCharArray();
-    //     int x = 0;
-    //     for (int i=7; i>=0; i--) {
-    //         if(x == 2) { return true; }
-    //         if(lineChars[i] == 'x') { x++; } 
-    //         else if(lineChars[i] != ' ') { return false; }
-    //     }
-    //     return false;
-    // }
+    private boolean isTie() {
+        for (int i=0; i<4; i++) {
+            for (int j=0; j<3; j++) { 
+                if(tile(i,j).equals(" ")) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean canPlace(int x) {
+        return(tile(x,0).equals(" "));
+    }
+
+    public void place(String chip, int x) {
+        int j = nextFreeSpace(x);
+        boardArray[x][j] = chip;
+    }
+
+    private int nextFreeSpace(int x) {
+        for(int j=2; j>=0; j--) {
+            if(tile(x,j).equals(" ")) {
+                return j;
+            }            
+        }
+        return null;
+    }
 
     // public Path next() {
     //     Path path = new Path();

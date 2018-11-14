@@ -50,8 +50,13 @@ public class Main {
             //     next.bfs(next);
             //     break;
 
-            case "test": // display all boards of each attempt to move each car +-direction
-  
+            case "test": 
+                newBoard.display();
+                if(newBoard.canPlace(2)) {
+                    newBoard.place('~',2);
+                }
+                newBoard.display();
+        
                 break;
 
             default:
