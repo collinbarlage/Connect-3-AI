@@ -85,7 +85,7 @@ public class Board implements java.io.Serializable {
         if(tie) { return "TIE"; }
 
         //test horz
-        for(int j=0; j<4; j++) {
+        for(int j=0; j<3; j++) {
             if(isWinner(0,j,1,0)) { return tile(0,j); }
             if(isWinner(1,j,1,0)) { return tile(1,j); }
         }
