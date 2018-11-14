@@ -39,9 +39,11 @@ public class Board implements java.io.Serializable {
             io.log("Oh geez, something went wrong. Check your argument string"); return;
         }
         // load input onto board
+        int c = 0;
         for (int i=0; i<4; i++) {
-            for (int j=2; j>=0; j--) { io.log(j*4 + i+" -> ("+i+", "+j+")");
-                boardArray[i][j] = input.get(j*4 + i);
+            for (int j=2; j>=0; j--) { 
+                boardArray[i][j] = input.get(c);
+                c++;
             }
         }
     }
