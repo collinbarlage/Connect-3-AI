@@ -40,7 +40,7 @@ public class Board implements java.io.Serializable {
         }
         // load input onto board
         for (int i=0; i<4; i++) {
-            for (int j=2; j>=0; j--) { io.log("its lit ("+i+", "+j);
+            for (int j=2; j>=0; j--) { io.log(j*4 + i+" -> ("+i+", "+j+")");
                 boardArray[i][j] = input.get(j*4 + i);
             }
         }
