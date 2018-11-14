@@ -96,10 +96,10 @@ public class Board implements java.io.Serializable {
         }
 
         //test diag
-        if(isWinner(0,0,1,1))   { return tile(0,0); }
-        if(isWinner(1,0,1,1))   { return tile(1,0); }
-        if(isWinner(2,0,-1,-1)) { return tile(2,0); }
-        if(isWinner(3,0,-1,-1)) { return tile(3,0); }
+        if(isWinner(0,0,1,1))  { return tile(0,0); }
+        if(isWinner(1,0,1,1))  { return tile(1,0); }
+        if(isWinner(2,0,-1,1)) { return tile(2,0); }
+        if(isWinner(3,0,-1,1)) { return tile(3,0); }
 
         return "None";
     }
