@@ -139,9 +139,8 @@ public class Board implements java.io.Serializable {
         String player = "O";
         if(xTurn) { player = "X"; }
         for (int i=0; i<4; i++) {
-            // for each car
             Board b = new Board(this);
-            while (b.canPlace(i)) {
+            if(b.canPlace(i)) {
                 b.place(player,i);
                 b.parent = new Board(this);
                 path.add(new Board(b));
