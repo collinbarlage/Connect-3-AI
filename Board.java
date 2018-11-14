@@ -20,9 +20,9 @@ public class Board implements java.io.Serializable {
         this.parent = og.parent;
         this.xTurn = og.xTurn;
 
-        String newBoardArray [][] = new String[6][6];
-        for (int j=0; j<6; j++) {
-            for (int i=0; i<6; i++) { 
+        String newBoardArray [][] = new String[4][3];
+        for (int j=0; j<3; j++) {
+            for (int i=0; i<4; i++) { 
                 newBoardArray[i][j] = og.tile(i,j);
             }
         }
