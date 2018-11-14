@@ -131,7 +131,7 @@ public class Board implements java.io.Serializable {
                 return j;
             }            
         }
-        return null;
+        return -1;
     }
 
     // public Path next() {

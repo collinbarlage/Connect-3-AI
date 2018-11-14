@@ -53,7 +53,7 @@ public class Main {
             case "test": 
                 newBoard.display();
                 if(newBoard.canPlace(2)) {
-                    newBoard.place('~',2);
+                    newBoard.place("~",2);
                 }
                 newBoard.display();
         
