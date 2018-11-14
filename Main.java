@@ -24,7 +24,7 @@ public class Main {
         if(input == "") { input = "   |   |   |   "; }
 		newBoard.load(input);
 
-        // Path next;
+        Path next;
 
         // execute command
         switch (command) {
