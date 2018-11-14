@@ -109,7 +109,7 @@ public class Board implements java.io.Serializable {
         for(int i=0; i<2; i++) {
             x += dx;
             y += dy;
-            if(!winner.equals(tile(x,y))) {
+            if(!winner.equals(tile(x,y)) || tile(x,y).equals(" ")) {
                 return false;
             }
         }
