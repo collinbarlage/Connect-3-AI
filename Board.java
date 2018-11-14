@@ -184,6 +184,7 @@ public class Board implements java.io.Serializable {
     public void minimax() {
         Player x = new Player("X");
         Player o = new Player("O");
+        Path path = new Path();
         Board b = this;
         path.add(b);
         while(b.winner().equals("None")) {
