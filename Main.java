@@ -45,10 +45,9 @@ public class Main {
                 newBoard.random();
                 break;
 
-            // case "minimax": // Breadth first search
-            //     next = newBoard.next();
-            //     next.bfs(next);
-            //     break;
+            case "minimax": 
+                newBoard.minimax();
+                break;
 
             case "test": 
                 newBoard.display();

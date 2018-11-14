@@ -181,4 +181,21 @@ public class Board implements java.io.Serializable {
         return true;
     }
 
+    public void minimax() {
+        Player x = new Player("X");
+        Player o = new Player("O");
+        Board b = this;
+        path.add(b);
+        while(b.winner().equals("None")) {
+            if(b.xTurn) {
+                b = x.randomMove(b);
+            } else {
+                b = o.randomMove(b);
+            }
+            path.add(new Board(b));
+            b.endTurn();
+        }
+        path.print();
+    }
+
 }
