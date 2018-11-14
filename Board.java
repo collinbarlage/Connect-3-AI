@@ -134,25 +134,21 @@ public class Board implements java.io.Serializable {
         return -1;
     }
 
-    // public Path next() {
-    //     Path path = new Path();
-    //     for (int c=0; c<this.cars.size(); c++) {
-    //         // for each car
-    //         Board forward = new Board(this);
-    //         while (forward.canMove(forward.cars.get(c), 1)) {
-    //             forward.move(forward.cars.get(c), 1);
-    //             forward.parent = new Board(this);
-    //             path.add(new Board(forward));
-    //         }      
-    //         Board backward = new Board(this);
-    //         while (backward.canMove(backward.cars.get(c), -1)) {
-    //             backward.move(backward.cars.get(c), -1);
-    //             backward.parent = new Board(this);
-    //             path.add(new Board(backward));
-    //         }       
-    //     }
-    //     return path;
-    // }
+    public Path next() {
+        Path path = new Path();
+        String player = "O";
+        if(b.xTurn) { player = "X"; }
+        for (int i=0; i<4; i++) {
+            // for each car
+            Board b = new Board(this);
+            while (b.canPlace(i)) {
+                b.place(player,i);
+                b.parent = new Board(this);
+                path.add(new Board(b));
+            }       
+        }
+        return path;
+    }
 
     private int randomInt(int max) {
         return ThreadLocalRandom.current().nextInt(0, max);

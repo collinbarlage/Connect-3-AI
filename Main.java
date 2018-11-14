@@ -36,10 +36,10 @@ public class Main {
                 io.log(newBoard.winner());
                 break;
 
-            // case "next": // display all boards of each attempt to move each car +-direction
-            //     next = newBoard.next();
-            //     next.print();
-            //     break;
+            case "next": // display all boards of each attempt to move each car +-direction
+                next = newBoard.next();
+                next.print();
+                break;
 
             // case "random": // display random path
             //     newBoard.random(10);

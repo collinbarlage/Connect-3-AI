@@ -2,7 +2,7 @@ PHONY: all clean
 
 all: run
 
-Main.class: Main.java IO.java Board.java 
+Main.class: Main.java IO.java Board.java Path.java
 	javac $^
 
 run: Main.class
