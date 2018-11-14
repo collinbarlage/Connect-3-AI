@@ -153,21 +153,21 @@ public class Board implements java.io.Serializable {
         return ThreadLocalRandom.current().nextInt(0, max);
     }
 
-    // public void random(int n) {
-    //     Path path = new Path(); // random path to construct
-    //     Board b = this;
-    //     path.add(b);
-    //     for (int i=0; i<n-1; i++) {
-    //         // check for solution
-    //         if(b.isDone()) {
-    //             break;
-    //         }
-    //         Path next = b.next();
-    //         b = next.get(randomInt(next.size()));
-    //         path.add(new Board(b));
-    //     }
-    //     path.print();
-    // }
+    public void random() {
+        Path path = new Path(); // random path to construct
+        Board b = this;
+        path.add(b);
+        while {
+            // check for solution
+            if(!b.winner().equals("None")) {
+                break;
+            }
+            Path next = b.next();
+            b = next.get(randomInt(next.size()));
+            path.add(new Board(b));
+        }
+        path.print();
+    }
 
     public boolean equals(Board b) {
         for (int j=0; j<3; j++) {

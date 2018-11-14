@@ -41,9 +41,9 @@ public class Main {
                 next.print();
                 break;
 
-            // case "random": // display random path
-            //     newBoard.random(10);
-            //     break;
+            case "random": // display random path
+                newBoard.random();
+                break;
 
             // case "minimax": // Breadth first search
             //     next = newBoard.next();
