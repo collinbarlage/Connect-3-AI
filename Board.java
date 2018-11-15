@@ -203,7 +203,6 @@ public class Board implements java.io.Serializable {
                 return next.get(i);
             }
         }
-        io.log("tried to block, but couldnt :(");
         return next.get(0);
     }
 
