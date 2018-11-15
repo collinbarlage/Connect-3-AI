@@ -248,8 +248,7 @@ public class Board implements java.io.Serializable {
         if(nextLevel.size() == 0) {
             return 0; //tie
         }
-        return minimaxSearch(nextLevel);
-    }
+        return path.get(minimaxSearch(nextLevel)).parentIndex;
 
     public Path min(Path og) {
         Path minPath = new Path();
