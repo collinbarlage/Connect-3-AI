@@ -271,7 +271,6 @@ public class Board implements java.io.Serializable {
             nextLevel.append(b.next()); //min
         }
         if(nextLevel.size() == 0) {
-            io.log("It's a tie :(");
             return 0; //tie
         }
         return path.get(minimaxSearch(nextLevel)).parentIndex;
@@ -311,7 +310,6 @@ public class Board implements java.io.Serializable {
             nextLevel.append(b.prune(b.next())); //min
         }
         if(nextLevel.size() == 0) {
-            io.log("It's a tie :(");
             return 0; //tie
         }
         return path.get(minimaxSearch(nextLevel)).parentIndex;
