@@ -239,8 +239,8 @@ public class Board implements java.io.Serializable {
     }
 
     public void minimax() {
-        RandomPlayer x = new Player("X");
-        MinimaxPlayer o = new Player("O");
+        RandomPlayer x = new RandomPlayer("X");
+        MinimaxPlayer o = new MinimaxPlayer("O");
         Path path = new Path();
         Board b = this;
         b.countBoard();
@@ -278,8 +278,8 @@ public class Board implements java.io.Serializable {
     }
 
     public void alphabeta() {
-        RandomPlayer x = new Player("X");
-        MinimaxAlphaBetaPlayer o = new Player("O");
+        RandomPlayer x = new RandomPlayer("X");
+        MinimaxAlphaBetaPlayer o = new MinimaxAlphaBetaPlayer("O");
         Path path = new Path();
         Board b = this;
         b.countBoard();

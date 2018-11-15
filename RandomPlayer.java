@@ -8,6 +8,10 @@ public class RandomPlayer extends Player implements java.io.Serializable {
         return next.get(randomInt(next.size()));
     }
 
+    private int randomInt(int max) {
+        return ThreadLocalRandom.current().nextInt(0, max);
+    }
+
 }
 
 

@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Player implements java.io.Serializable {
     IO io = new IO();
@@ -18,11 +17,6 @@ public class Player implements java.io.Serializable {
         io.log("DEFAULT MOVE AHH");
         return b;
     }
-
-    private int randomInt(int max) {
-        return ThreadLocalRandom.current().nextInt(0, max);
-    }
-
 }
 
 

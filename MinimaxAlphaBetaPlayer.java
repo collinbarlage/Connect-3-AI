@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class MinimaxAlphaBetaPlayer extends Player implements java.io.Serializable {
 
