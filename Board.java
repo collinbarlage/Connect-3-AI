@@ -11,6 +11,8 @@ public class Board implements java.io.Serializable {
     public Board parent;
 
     public boolean xTurn = true;
+    public int xIndex = 0;
+    public int oIndex = 0;
 
     public Board() {
         // default does nothing
@@ -72,18 +74,15 @@ public class Board implements java.io.Serializable {
 
     public String winner() {
         if(isTie()) { return "TIE"; }
-
         //test horz
         for(int j=0; j<3; j++) {
             if(isWinner(0,j,1,0)) { return tile(0,j); }
             if(isWinner(1,j,1,0)) { return tile(1,j); }
         }
-
         //test vert
         for(int i=0; i<4; i++) {
             if(isWinner(i,0,0,1)) { return tile(i,0); }
         }
-
         //test diag
         if(isWinner(0,0,1,1))  { return tile(0,0); }
         if(isWinner(1,0,1,1))  { return tile(1,0); }
@@ -147,6 +146,7 @@ public class Board implements java.io.Serializable {
             if(b.canPlace(i)) {
                 b.place(player,i);
                 b.parent = new Board(this);
+                b.countBoard();
                 path.add(new Board(b));
             }       
         }
@@ -181,17 +181,55 @@ public class Board implements java.io.Serializable {
         return true;
     }
 
+    private void count(int x, int y, int dx, int dy) {
+        int iX = 0; int iO = 0;
+        for(int i=0; i<2; i++) {
+            x += dx; y += dy;
+            if(tile(x,y).equals("X")) {
+                if(iO<2) { iO = 0; }
+                iX++;
+            } else if(tile(x,y).equals("O")) {
+                if(iX<2) { iX = 0; }
+                iO++;
+            } else {
+                if(iX<2) { iX = 0; }
+                if(iO<2) { iO = 0; }
+            }
+        }
+        if(xIndex < iX) { xIndex = iX; }
+        if(oIndex < iO) { oIndex = iO; }
+    }
+
+    public void countBoard() {
+        // if(isTie()) { return "TIE"; }
+        //count horz
+        for(int j=0; j<3; j++) {
+            if(count(0,j,1,0)) { return tile(0,j); }
+            if(count(1,j,1,0)) { return tile(1,j); }
+        }
+        //count vert
+        for(int i=0; i<4; i++) {
+            if(count(i,0,0,1)) { return tile(i,0); }
+        }
+        //count diag
+        if(count(0,0,1,1))  { return tile(0,0); }
+        if(count(1,0,1,1))  { return tile(1,0); }
+        if(count(2,0,-1,1)) { return tile(2,0); }
+        if(count(3,0,-1,1)) { return tile(3,0); }
+    }
+
     public void minimax() {
         Player x = new Player("X");
         Player o = new Player("O");
         Path path = new Path();
         Board b = this;
+        b.countBoard();
         path.add(b);
         while(b.winner().equals("None")) {
             if(b.xTurn) {
                 b = x.randomMove(b);
             } else {
-                b = o.randomMove(b);
+                b = o.minimaxMove(b);
             }
             path.add(new Board(b));
             b.endTurn();
@@ -199,4 +237,19 @@ public class Board implements java.io.Serializable {
         path.print();
     }
 
+    public int minimaxSearch(Path path) {
+        Path nextLevel = new Path();
+        
+        for (int i=0; i<path.size(); i++) {
+            Board b = path.get(i);
+            if(b.winner.equal("O")) {
+                return i;
+            }
+            nextLevel.append(b.next());
+        }
+        if(nextLevel.size() == 0) {
+            return 0; //tie
+        }
+        return path.get(minimaxSearch(nextLevel));
+    }
 }

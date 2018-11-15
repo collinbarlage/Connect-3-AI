@@ -19,10 +19,10 @@ public class Player implements java.io.Serializable {
         return next.get(randomInt(next.size()));
     }
 
-    // Board minimaxMove(Board b) {
-    //     Path next = b.next();
-
-    // }
+    Board minimaxMove(Board b) {
+        Path next = b.next();
+        return next.get(next.minimaxSearch(next));
+    }
 
     private int randomInt(int max) {
         return ThreadLocalRandom.current().nextInt(0, max);
