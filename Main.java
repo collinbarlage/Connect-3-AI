@@ -49,13 +49,11 @@ public class Main {
                 newBoard.minimax();
                 break;
 
+            case "alphabeta": 
+                newBoard.alphabeta();
+                break;
+
             case "test": 
-                newBoard.display();
-                if(newBoard.canPlace(2)) {
-                    newBoard.place("~",2);
-                }
-                newBoard.display();
-        
                 break;
 
             default:
