@@ -11,6 +11,7 @@ public class Board implements java.io.Serializable {
     public Board parent;
 
     public boolean xTurn = true;
+    public int parentIndex = 0;
     public int xIndex = 0;
     public int oIndex = 0;
 
@@ -19,6 +20,7 @@ public class Board implements java.io.Serializable {
     }
 
     public Board(Board og) { // copy constuctor
+        this.parentIndex = og.parentIndex;
         this.parent = og.parent;
         this.xTurn = og.xTurn;
 
@@ -146,6 +148,7 @@ public class Board implements java.io.Serializable {
             if(b.canPlace(i)) {
                 b.place(player,i);
                 b.parent = new Board(this);
+                b.parentIndex = this.parentIndex;
                 b.countBoard();
                 path.add(new Board(b));
             }       
@@ -245,6 +248,6 @@ public class Board implements java.io.Serializable {
         if(nextLevel.size() == 0) {
             return 0; //tie
         }
-        return minimaxSearch(nextLevel);
+        return path.get(minimaxSearch(nextLevel)).parentIndex;
     }
 }
