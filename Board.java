@@ -252,14 +252,13 @@ public class Board implements java.io.Serializable {
 
         for (int i=0; i<path.size(); i++) {
             Board b = path.get(i);
-            if(b.canWin()) {
-                return block(b);
-            } else if(b.winner().equals("O")) { //max
+            if(b.winner().equals("O") && !b.canWin()) { //max
                 return b.parentIndex;
             }
             nextLevel.append(min(b.next())); //min
         }
         if(nextLevel.size() == 0) {
+            io.log("It's a tie :(");
             return 0; //tie
         }
         return path.get(minimaxSearch(nextLevel)).parentIndex;
@@ -273,15 +272,5 @@ public class Board implements java.io.Serializable {
             }
         }
         return minPath;
-    }
-
-    private int block(Path path) {
-        for (int i=0; i<path.size(); i++) {
-            if(!path.get(i).canWin()) {
-                return i;
-            }
-        }
-        io.log("tried to block, but couldnt :(");
-        return 0;
     }
 }
