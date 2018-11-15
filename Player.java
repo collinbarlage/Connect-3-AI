@@ -21,7 +21,7 @@ public class Player implements java.io.Serializable {
 
     Board minimaxMove(Board b) {
         Path next = b.next();
-        return next.get(next.minimaxSearch(next));
+        return next.get(b.minimaxSearch(next));
     }
 
     private int randomInt(int max) {
