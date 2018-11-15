@@ -201,21 +201,16 @@ public class Board implements java.io.Serializable {
     }
 
     public void countBoard() {
-        // if(isTie()) { return "TIE"; }
         //count horz
         for(int j=0; j<3; j++) {
-            if(count(0,j,1,0)) { return tile(0,j); }
-            if(count(1,j,1,0)) { return tile(1,j); }
+            count(0,j,1,0);
+            count(1,j,1,0);
         }
         //count vert
-        for(int i=0; i<4; i++) {
-            if(count(i,0,0,1)) { return tile(i,0); }
-        }
+        for(int i=0; i<4; i++) { count(i,0,0,1); }
         //count diag
-        if(count(0,0,1,1))  { return tile(0,0); }
-        if(count(1,0,1,1))  { return tile(1,0); }
-        if(count(2,0,-1,1)) { return tile(2,0); }
-        if(count(3,0,-1,1)) { return tile(3,0); }
+        count(0,0,1,1); count(1,0,1,1);
+        count(2,0,-1,1); count(3,0,-1,1);
     }
 
     public void minimax() {
@@ -239,7 +234,7 @@ public class Board implements java.io.Serializable {
 
     public int minimaxSearch(Path path) {
         Path nextLevel = new Path();
-        
+
         for (int i=0; i<path.size(); i++) {
             Board b = path.get(i);
             if(b.winner.equal("O")) {
