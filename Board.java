@@ -237,7 +237,7 @@ public class Board implements java.io.Serializable {
 
         for (int i=0; i<path.size(); i++) {
             Board b = path.get(i);
-            if(b.winner.equal("O")) {
+            if(b.winner().equal("O")) {
                 return i;
             }
             nextLevel.append(b.next());
