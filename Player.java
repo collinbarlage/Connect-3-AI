@@ -14,20 +14,9 @@ public class Player implements java.io.Serializable {
         label = l;
     }
 
-    Board randomMove(Board b) {
-        Path next = b.next();
-        return next.get(randomInt(next.size()));
-    }
-
-    Board minimaxMove(Board b) {
-        Path next = b.next();
-        if(b.canWin()) {
-            return b.block();
-        }
-        for(int i=0; i<next.size(); i++) {
-            next.get(i).parentIndex = i;
-        }
-        return next.get(b.minimaxSearch(next));
+    Board move(Board b) {
+        io.log("DEFAULT MOVE AHH");
+        return b;
     }
 
     private int randomInt(int max) {

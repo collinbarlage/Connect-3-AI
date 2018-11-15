@@ -239,18 +239,18 @@ public class Board implements java.io.Serializable {
     }
 
     public void minimax() {
-        Player x = new Player("X");
-        Player o = new Player("O");
+        RandomPlayer x = new Player("X");
+        MinimaxPlayer o = new Player("O");
         Path path = new Path();
         Board b = this;
         b.countBoard();
         path.add(b);
         while(b.winner().equals("None")) {
             if(b.xTurn) {
-                b = x.randomMove(b);
+                b = x.move(b);
             } else {
                 long startTime = System.nanoTime();
-                b = o.minimaxMove(b);
+                b = o.move(b);
                 long endTime = System.nanoTime();
                 io.log("Duration of minimax move: " + ((float)(endTime - startTime)/1000000) + " ms");
             }
@@ -268,7 +268,7 @@ public class Board implements java.io.Serializable {
             if(b.winner().equals("O")) { //max
                 return b.parentIndex;
             }
-            nextLevel.append(min(b.next())); //min
+            nextLevel.append(b.next()); //min
         }
         if(nextLevel.size() == 0) {
             io.log("It's a tie :(");
@@ -277,12 +277,52 @@ public class Board implements java.io.Serializable {
         return path.get(minimaxSearch(nextLevel)).parentIndex;
     }
 
-    public Path min(Path og) {
+    public void alphabeta() {
+        RandomPlayer x = new Player("X");
+        MinimaxAlphaBetaPlayer o = new Player("O");
+        Path path = new Path();
+        Board b = this;
+        b.countBoard();
+        path.add(b);
+        while(b.winner().equals("None")) {
+            if(b.xTurn) {
+                b = x.move(b);
+            } else {
+                long startTime = System.nanoTime();
+                b = o.move(b);
+                long endTime = System.nanoTime();
+                io.log("Duration of alphabeta move: " + ((float)(endTime - startTime)/1000000) + " ms");
+            }
+            path.add(new Board(b));
+            b.endTurn();
+        }
+        path.print();
+    }
+
+
+    public int alphabetaSearch(Path path) {
+        Path nextLevel = new Path();
+
+        for (int i=0; i<path.size(); i++) {
+            Board b = path.get(i);
+            if(b.winner().equals("O")) { //max
+                return b.parentIndex;
+            }
+            nextLevel.append(b.prune(b.next())); //min
+        }
+        if(nextLevel.size() == 0) {
+            io.log("It's a tie :(");
+            return 0; //tie
+        }
+        return path.get(minimaxSearch(nextLevel)).parentIndex;
+    }
+
+    public Path prune(Path og) {
         Path minPath = new Path();
         for(int i=0; i<og.size(); i++) {
-            if(!og.get(i).winner().equals("X")) {
+            // if(og.get(i).oIndex) {
                 minPath.add(og.get(i));
-            }
+            // }
         }
         return minPath;
     }

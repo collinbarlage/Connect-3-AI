@@ -1,0 +1,20 @@
+import java.io.*;
+import java.util.concurrent.ThreadLocalRandom;
+
+public class MinimaxPlayer extends Player implements java.io.Serializable {
+
+    Board move(Board b) {
+        Path next = b.next();
+        if(b.canWin()) {
+            return b.block();
+        }
+        for(int i=0; i<next.size(); i++) {
+            next.get(i).parentIndex = i;
+        }
+        return next.get(b.minimaxSearch(next));
+    }
+
+}
+
+
+
