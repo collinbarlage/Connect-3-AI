@@ -249,7 +249,10 @@ public class Board implements java.io.Serializable {
             if(b.xTurn) {
                 b = x.randomMove(b);
             } else {
+                long startTime = System.nanoTime();
                 b = o.minimaxMove(b);
+                long endTime = System.nanoTime();
+                io.log("Duration of minimax move: " + (endTime - startTime));
             }
             path.add(new Board(b));
             b.endTurn();

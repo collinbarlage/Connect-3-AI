@@ -20,7 +20,6 @@ public class Player implements java.io.Serializable {
     }
 
     Board minimaxMove(Board b) {
-        long startTime = System.nanoTime();
         Path next = b.next();
         if(b.canWin()) {
             return b.block();
@@ -28,10 +27,7 @@ public class Player implements java.io.Serializable {
         for(int i=0; i<next.size(); i++) {
             next.get(i).parentIndex = i;
         }
-        Board r = next.get(b.minimaxSearch(next));
-        long endTime = System.nanoTime();
-        io.log("Duration of minimax move: " + (endTime - startTime));
-        return r;
+        return next.get(b.minimaxSearch(next));
     }
 
     private int randomInt(int max) {
