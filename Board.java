@@ -252,7 +252,7 @@ public class Board implements java.io.Serializable {
                 long startTime = System.nanoTime();
                 b = o.minimaxMove(b);
                 long endTime = System.nanoTime();
-                io.log("Duration of minimax move: " + ((float(endTime) - float(startTime))/1000000) + " ms");
+                io.log("Duration of minimax move: " + (((float)endTime - (float)startTime)/1000000) + " ms");
             }
             path.add(new Board(b));
             b.endTurn();
