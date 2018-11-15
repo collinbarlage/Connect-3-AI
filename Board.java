@@ -184,7 +184,7 @@ public class Board implements java.io.Serializable {
         return true;
     }
 
-    private boolean canWin() {
+    public boolean canWin() {
         Board board = new Board(this);
         board.endTurn();
         Path next = board.next();
