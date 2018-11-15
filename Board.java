@@ -189,7 +189,7 @@ public class Board implements java.io.Serializable {
         board.endTurn();
         Path next = board.next();
         for (int i=0; i<next.size(); i++) {
-            if(next.get(i).winner.equals("X")) {
+            if(next.get(i).winner().equals("X")) {
                 return true;
             }
         }
