@@ -240,14 +240,26 @@ public class Board implements java.io.Serializable {
 
         for (int i=0; i<path.size(); i++) {
             Board b = path.get(i);
-            if(b.winner().equals("O")) {
+            if(b.winner().equals("O")) { //max
                 return b.parentIndex;
             }
-            nextLevel.append(b.next());
+            nextLevel.append(min(b.next())); //min
         }
         if(nextLevel.size() == 0) {
             return 0; //tie
         }
         return minimaxSearch(nextLevel);
     }
+
+    public Path min(Path og) {
+        Path minPath = new Path();
+        for(int i=0; i<og.size(); i++) {
+            if(!og.get(i).winner().equals("X")) {
+                minPath.add(og.get(i));
+            }
+        }
+        return minPath;
+    }
+
+
 }
