@@ -241,13 +241,13 @@ public class Board implements java.io.Serializable {
         for (int i=0; i<path.size(); i++) {
             Board b = path.get(i);
             if(b.winner().equals("O")) {
-                return i;
+                return b.parentIndex;
             }
             nextLevel.append(b.next());
         }
         if(nextLevel.size() == 0) {
             return 0; //tie
         }
-        return path.get(minimaxSearch(nextLevel)).parentIndex;
+        return minimaxSearch(nextLevel);
     }
 }
