@@ -320,9 +320,9 @@ public class Board implements java.io.Serializable {
     public Path prune(Path og) {
         Path minPath = new Path();
         for(int i=0; i<og.size(); i++) {
-            // if(og.get(i).oIndex) {
+            if(this.oIndex < og.get(i).oIndex) {
                 minPath.add(og.get(i));
-            // }
+            }
         }
         return minPath;
     }
