@@ -2,6 +2,10 @@ import java.io.*;
 
 public class MinimaxPlayer extends Player implements java.io.Serializable {
 
+    public MinimaxPlayer(String l) {
+        label = l;
+    }
+
     Board move(Board b) {
         Path next = b.next();
         if(b.canWin()) {

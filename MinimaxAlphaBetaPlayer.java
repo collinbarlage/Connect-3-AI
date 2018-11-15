@@ -2,6 +2,10 @@ import java.io.*;
 
 public class MinimaxAlphaBetaPlayer extends Player implements java.io.Serializable {
 
+    public MinimaxAlphaBetaPlayer(String l) {
+        label = l;
+    }
+
     Board move(Board b) {
         Path next = b.next();
         if(b.canWin()) {
