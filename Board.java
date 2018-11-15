@@ -197,7 +197,7 @@ public class Board implements java.io.Serializable {
     }
 
     public Board block() {
-        Path next = this.next()
+        Path next = this.next();
         for (int i=0; i<next.size(); i++) {
             if(!next.get(i).canWin()) {
                 return next.get(i);
