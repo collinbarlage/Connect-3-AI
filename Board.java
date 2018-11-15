@@ -196,6 +196,17 @@ public class Board implements java.io.Serializable {
         return false;
     }
 
+    public Board block() {
+        Path next = this.next()
+        for (int i=0; i<next.size(); i++) {
+            if(!next.get(i).canWin()) {
+                return next.get(i);
+            }
+        }
+        io.log("tried to block, but couldnt :(");
+        return next.get(0);
+    }
+
     private void count(int x, int y, int dx, int dy) {
         int iX = 0; int iO = 0;
         for(int i=0; i<2; i++) {
@@ -252,7 +263,7 @@ public class Board implements java.io.Serializable {
 
         for (int i=0; i<path.size(); i++) {
             Board b = path.get(i);
-            if(b.winner().equals("O") && !b.canWin()) { //max
+            if(b.winner().equals("O")) { //max
                 return b.parentIndex;
             }
             nextLevel.append(min(b.next())); //min
